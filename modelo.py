@@ -8,12 +8,20 @@ class CotizacionHistorica:
         df["Open"] = df["Open"].apply(self._precio)
         df["High"] = df["High"].apply(self._precio)
         df["Low"] = df["Low"].apply(self._precio)
+        df["Diff_Apertura_Cierre"] = df["Open"]-df["Close/Last"]
+        df["Diff_Max_Min"] = df["High"]-df["Low"]
         self.df = df
 
     def cotizaciones(self, fecha_desde, fecha_hasta):
         desde = pd.to_datetime(fecha_desde)
         hasta = pd.to_datetime(fecha_hasta)
         return self.df[(self.df["Date"]>= desde)&(self.df["Date"]<= hasta)]
+    
+    def fecha_min(self):
+        return self.df["Date"].min().to_pydatetime()
+
+    def fecha_max(self):
+        return self.df["Date"].max().to_pydatetime()
     
     @staticmethod
     def _precio(precio_str):
