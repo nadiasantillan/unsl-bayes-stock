@@ -1,2 +1,6 @@
 pandas
 seaborn
+arviz
+numpy
+pymc
+scipy
