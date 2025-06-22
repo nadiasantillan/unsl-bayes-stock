@@ -4,3 +4,4 @@ arviz
 numpy
 pymc
 scipy
+statsmodels
